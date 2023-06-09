@@ -1,6 +1,6 @@
 // Source: public/src/js/app.js
 var testnet = false;
-var netSymbol = testnet ? 'OCCT' : 'OCC';
+var netSymbol = testnet ? 'TAZ' : 'OCC';
 
 var defaultLanguage = localStorage.getItem('insight-language') || 'en';
 var defaultCurrency = localStorage.getItem('insight-currency') || netSymbol;

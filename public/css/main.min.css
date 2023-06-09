@@ -3981,7 +3981,8 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
 
     .navbar-fixed-top .navbar-collapse, .navbar-static-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse {
         padding-left: 0;
-        padding-right: 0
+        padding-right: 0;
+        margin-left: 120px;
     }
 }
 
@@ -4046,7 +4047,27 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
 
 @media (min-width: 768px) {
     .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
-        margin-left: -15px
+        margin-left: -15px;
+        position: absolute;
+        display: block;
+        height: auto;
+        width: 106px;
+    }
+
+    .navbar-brand{
+        position: absolute;
+        display: block;
+        height: auto;
+        width: 106px;
+        z-index: 99999;
+
+    }
+
+    .navbar-brand #brandImg{
+        width: 100px;
+        height: 100%;
+        left: 20px;
+        top: 0;
     }
 }
 
@@ -4075,7 +4096,7 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
 }
 
 .navbar-toggle .icon-bar + .icon-bar {
-    margin-top: 4px
+    margin-top: 6px
 }
 
 @media (min-width: 768px) {
@@ -4122,6 +4143,10 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
     .navbar-nav {
         float: left;
         margin: 0
+        margin-left:120px;
+    }
+    .navbar .container {
+        position: relative;
     }
 
     .navbar-nav > li {
@@ -4267,8 +4292,8 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
 }
 
 .navbar-default {
-    background-color: #000;
-    border-color: #000
+    background-color: #fff;
+    border-color: #eee
 }
 
 .navbar-default .navbar-brand {
@@ -4289,7 +4314,6 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    color: #333;
     background-color: transparent
 }
 
@@ -4305,10 +4329,6 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
 
 .navbar-default .navbar-toggle {
     border-color: #ddd
-}
-
-.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-    background-color: #ddd
 }
 
 .navbar-default .navbar-toggle .icon-bar {
@@ -6448,13 +6468,13 @@ button.close {
 
 html, body {
     color: #000;
-    font-family: Ubuntu, sans-serif;
+    font-family: 'Hind', sans-serif;
     height: 100%
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #373D42;
-    font-family: Ubuntu, sans-serif
+    font-family: 'Hind', sans-serif
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide {
@@ -6480,10 +6500,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     position: fixed;
     margin: 0;
     padding: 0;
-    top: 63px;
+    top: 80px;
     left: 0;
     right: 0;
-    z-index: 99999
+    z-index: 998
 }
 
 #qr-canvas {
@@ -6518,7 +6538,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     min-height: 100%;
     height: auto;
     margin: 0 auto -51px;
-    padding: 0 0 75px
+    padding:  0 75px 0
 }
 
 .m10h {
@@ -6591,24 +6611,28 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-    background-color: #fff
+    background-color: #000
 }
 
-.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-    background-color: #373D42
-}
+
 
 .navbar-default {
-    background-color: #000;
     margin: 0;
-    border: 0
+    border: 0;
+    border-bottom: #eee 1px solid;
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: #fff;
-    font-family: Ubuntu, sans-serif;
+
+    font-family: 'Hind', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
     padding-left: 20px;
-    padding-right: 20px
+    padding-right: 20px;
+
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: #000;
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus {
@@ -6617,8 +6641,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > .active > a:hover {
-    background-color: #333;
-    color: #eee
+    font-weight: 700px;
 }
 
 .navbar-form .form-group {
@@ -6626,7 +6649,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .navbar-form {
-    margin-top: 15px
+    margin-top: 22px
 }
 
 .nav-tabs.nav-justified > li > a:hover {
@@ -6634,7 +6657,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .insight {
-    font-family: Ubuntu, sans-serif;
+    font-family: 'Hind', sans-serif;
     font-size: 34px;
     font-style: italic;
     font-weight: 700;
@@ -6642,11 +6665,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-    color: #fffffe
+    color: #000
 }
 
 .navbar-default .navbar-brand {
-    color: #FFF;
+    color: #000;
     padding: 9px 5px 0
 }
 
@@ -6699,26 +6722,26 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 #search::-webkit-input-placeholder {
     color: #a7a7a7;
-    font-family: Ubuntu, sans-serif;
+    font-family: 'Hind', sans-serif;
     font-style: italic;
     font-weight: 100
 }
 
 #search::-moz-placeholder {
     color: #a7a7a7;
-    font-family: Ubuntu, sans-serif;
+    font-family: 'Hind', sans-serif;
     font-weight: 100
 }
 
 .status {
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
-    background-color: #333;
+    background-color: #eee;
     border-radius: 3px;
-    margin-top: 7px;
+    margin-top: 13px;
     padding: 8px 10px;
     font-size: 12px;
-    color: #eee;
+    color: #666;
     text-align: center;
     margin-right: 10px
 }
@@ -6775,7 +6798,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .block-id span {
-    font-size: 40px;
+    font-size: 20px;
     margin: 30px 0
 }
 
@@ -7338,7 +7361,7 @@ color: #333
     }
 
     .block-id span {
-        font-size: 24px;
+        font-size: 18px;
         margin: 10px 0
     }
 
@@ -7421,11 +7444,11 @@ color: #333
     }
 
     .navbar-default .navbar-toggle {
-        margin-top: 7px
+        margin-top: 14px
     }
 
     .navbar {
-        min-height: 50px
+        min-height: 68px
     }
 
     #search {
@@ -7483,6 +7506,13 @@ color: #333
     }
 }
 
+@media (min-width: 780px) {
+
+    #wrap {
+        padding: 75px 0 75px 0
+    }
+}
+
 @media (min-width: 1200px) {
     .col-gray-fixed {
         width: 280px
@@ -7494,7 +7524,7 @@ color: #333
 }
 
 #brandImg {
-    height: 45px
+    height: 50px
 }
 
 #brandImgLg {
@@ -7510,6 +7540,11 @@ color: #333
 }
 
 h1, .h1, h2, .h2 {
-    margin-top: 70px;
     margin-bottom: 10px
+}
+
+#ofc-logo{
+    width: 50%;
+    display: block;
+    margin: 0 auto 50px auto;
 }
