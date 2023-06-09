@@ -1,99 +1,150 @@
 <div class="alert alert-danger" data-ng-show="flashMessage">
-  {{$root.flashMessage}}
+    {{$root.flashMessage}}
 </div>
 <div data-ng-include src="'views/includes/connection.html'"></div>
 <section data-ng-controller="IndexController" data-ng-init="index()">
-  <div class="container">
-    <div id="home" class="row">
-      <div class="col-xs-12 col-md-8">
+    <div class="container">
+        <div id="home" class="row">
+            <div class="col-xs-12 col-md-8">
 
-        <div id="search-form-mobile" class="visible-xs" data-ng-include src="'views/includes/search.html'"></div>
+                <div id="search-form-mobile" class="visible-xs" data-ng-include
+                     src="'views/includes/search.html'"></div>
 
-        <h1 translate>Latest Blocks</h1>
-        <table class="table table-hover table-striped" style="table-layout: fixed">
-          <thead>
-            <tr>
-              <th translate>Height</th>
-              <th translate>Age</th>
-              <th class="text-right"><span class="ellipsis" translate>Transactions</span></th>
-              <th class="text-center" translate data-ng-show="lastNotarizedHeight">Notarized</th>
-              <th class="text-right hidden-xs"><span class="ellipsis" translate>Mined by</span></th>
-              <th class="text-right" translate>Size</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr data-ng-show="!blocks.length">
-              <td colspan="4" translate>Waiting for blocks...</td>
-            </tr>
-            <tr class="fader" data-ng-repeat='b in blocks'>
-              <td>
-                <a href="block/{{b.hash}}">{{b.height}}</a><span
-                  data-ng-show="(b.height <= lastNotarizedHeight)  && lastNotarizedHeight">&nbsp;&middot;&nbsp;<span
-                    class="glyphicon glyphicon-lock"></span></span><span
-                  data-ng-show=" (b.height > lastNotarizedHeight)  && lastNotarizedHeight">&nbsp;&middot;&nbsp;<span
-                    class="glyphicon glyphicon-wrench"></span></span>
-              </td>
-              <td><span class="ellipsis">{{humanSince(b.time)}}</span></td>
-              <td class="text-right">{{b.txlength}}</td>
-              <td class="text-center" style="color:#2FA4D7"
-                data-ng-show=" (b.height <= lastNotarizedHeight)  && lastNotarizedHeight"><span
-                  class="glyphicon glyphicon-ok-sign"></span>&nbsp;&middot;&nbsp;true</td>
-              <td class="text-center" style="color:grey"
-                data-ng-show=" (b.height > lastNotarizedHeight)  && lastNotarizedHeight"><span
-                  class="glyphicon glyphicon-remove-sign"></span>&nbsp;&middot;&nbsp;false</td>
-              <td class="text-right hidden-xs"><a href="{{b.poolInfo.url}}" title="{{b.poolInfo.poolName}}"
-                  target="_blank" data-ng-show="b.poolInfo">{{b.poolInfo.poolName}}</a></td>
-              <td class="text-right">{{b.size}}</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="btn-more">
-          <a href="blocks" class="btn btn-default" translate>See all blocks</a>
+                <h1 translate>Latest Blocks</h1>
+                <table class="table table-hover table-striped" style="table-layout: fixed">
+                    <thead>
+                    <tr>
+                        <th translate>Height</th>
+                        <th translate>Age</th>
+                        <th class="text-right"><span class="ellipsis" translate>Transactions</span></th>
+                        <th class="text-center" translate data-ng-show="lastNotarizedHeight">Notarized</th>
+                        <th class="text-right hidden-xs"><span class="ellipsis" translate>Mined by</span></th>
+                        <th class="text-right" translate>Size</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr data-ng-show="!blocks.length">
+                        <td colspan="4" translate>Waiting for blocks...</td>
+                    </tr>
+                    <tr class="fader" data-ng-repeat='b in blocks'>
+                        <td>
+                            <a href="block/{{b.hash}}">{{b.height}}</a><span
+                                data-ng-show="(b.height <= lastNotarizedHeight)  && lastNotarizedHeight">&nbsp;&middot;&nbsp;<span
+                                class="glyphicon glyphicon-lock"></span></span><span
+                                data-ng-show=" (b.height > lastNotarizedHeight)  && lastNotarizedHeight">&nbsp;&middot;&nbsp;<span
+                                class="glyphicon glyphicon-wrench"></span></span>
+                        </td>
+                        <td><span class="ellipsis">{{humanSince(b.time)}}</span></td>
+                        <td class="text-right">{{b.txlength}}</td>
+                        <td class="text-center" style="color:#2FA4D7"
+                            data-ng-show=" (b.height <= lastNotarizedHeight)  && lastNotarizedHeight"><span
+                                class="glyphicon glyphicon-ok-sign"></span>&nbsp;&middot;&nbsp;true
+                        </td>
+                        <td class="text-center" style="color:grey"
+                            data-ng-show=" (b.height > lastNotarizedHeight)  && lastNotarizedHeight"><span
+                                class="glyphicon glyphicon-remove-sign"></span>&nbsp;&middot;&nbsp;false
+                        </td>
+                        <td class="text-right hidden-xs"><a href="{{b.poolInfo.url}}" title="{{b.poolInfo.poolName}}"
+                                                            target="_blank" data-ng-show="b.poolInfo">{{b.poolInfo.poolName}}</a>
+                        </td>
+                        <td class="text-right">{{b.size}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="btn-more">
+                    <a href="blocks" class="btn btn-default" translate>See all blocks</a>
+                </div>
+
+                <h2 translate>Latest Transactions</h2>
+
+                <table class="table table-hover table-striped" style="table-layout: fixed;">
+                    <thead>
+                    <tr>
+                        <th>Hash</th>
+                        <th class="text-right" translate>Value Out</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr data-ng-show="!txs.length">
+                        <td colspan="3" translate>Waiting for transactions...</td>
+                    </tr>
+                    <tr class="fader" data-ng-repeat='tx in txs'>
+                        <td>
+                            <a class="ellipsis" href="tx/{{tx.txid}}">{{tx.txid}}</a>
+                        </td>
+                        <td class="text-right"><span
+                                class="ellipsis">{{$root.currency.getConvertion(tx.valueOut)}}</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="col-xs-12 col-md-4 ">
+                <div class="p-3 col-gray">
+                    <div class="mb-1 text-center">
+                        <small>Powered by</small>
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" id="ofc-logo" viewBox="0 0 1341.88 177.21">
+                            <defs>
+                                <style>.cls-1{fill:#00b483;}.cls-2{fill:#0c1121;}</style>
+                            </defs>
+                            <g>
+                                <path class="cls-2" d="M888.13,87.6c0-36.19,24.49-52.16,50.57-52.16,18.52,0,41.42,7.7,45.2,37.53h-18.32c-2.79-15.4-14.14-20.98-27.08-20.98-18.92,0-31.46,13.09-31.46,35.61s12.54,35.22,31.46,35.22c13.14,0,24.29-5.77,27.08-21.36h18.32c-3.39,30.22-26.68,37.92-45.2,37.92-26.08,0-50.57-15.59-50.57-51.78Z"></path>
+                                <path class="cls-2" d="M1047.19,52.3c-16.33,0-27.68,9.98-27.68,28.18v58.9h-20.11V0h20.11V57.98h.6c1.79-7.63,11.75-22.31,34.85-22.31,20.31,0,36.64,11.55,36.64,40.31v63.4h-20.11v-58.9c0-18.2-7.96-28.18-24.29-28.18Z"></path>
+                                <path class="cls-2" d="M1107.08,111.39c0-19.17,14.54-27.04,33.05-29.14l25.69-2.88c9.56-1.15,12.74-2.88,12.74-5.94v-2.68c0-15.92-8.56-20.13-23.1-20.13s-23.3,4.22-23.3,16.87v2.3h-19.31v-4.03c0-19.94,14.54-29.91,43.01-29.91s42.81,10.55,42.81,34.7v68.83h-18.91v-18.02h-.8c-1.99,3.83-11.75,18.02-37.24,18.02-19.31,0-34.65-8.24-34.65-27.99Zm39.62,12.85c21.9,0,31.86-13.04,31.86-23.78v-10.93c-1.39,2.11-3.98,3.45-14.14,4.6l-19.51,2.49c-12.94,1.53-17.72,5.94-17.72,13.81,0,9.4,6.97,13.81,19.51,13.81Z"></path>
+                                <path class="cls-2" d="M1214.17,35.84h20.11v103.54h-20.11V35.84Z"></path>
+                                <path class="cls-2" d="M1297.56,52.45c-16.33,0-27.68,9.96-27.68,28.13v58.8h-20.11V35.84h20.11v22.27h.6c1.79-7.62,11.75-22.27,34.85-22.27,20.31,0,36.64,11.53,36.64,40.24v63.3h-20.11v-58.8c0-18.17-7.96-28.13-24.29-28.13Z"></path>
+                            </g>
+                            <g>
+                                <path class="cls-1" d="M508.22,0h11.15V12.54h-6.97c-10.95,0-14.94,4.18-14.94,15.33v7.97h21.9v12.74h-21.9v90.8h-15.93V48.58h-14.34v-12.74h14.34v-10.56C481.54,6.17,492.88,0,508.22,0Z"></path>
+                                <path class="cls-1" d="M527.89,87.41c0-35.61,24.09-51.97,49.78-51.97s49.78,16.36,49.78,51.97-24.09,51.97-49.78,51.97-49.78-16.36-49.78-51.97Zm49.78,38.88c17.92,0,34.45-11.93,34.45-38.88s-16.53-39.07-34.45-39.07-34.65,12.13-34.65,39.07,16.53,38.88,34.65,38.88Z"></path>
+                                <path class="cls-1" d="M642.94,87.61c0-35.47,24.09-51.77,49.78-51.77s49.78,16.3,49.78,51.77-24.09,51.77-49.78,51.77-49.78-16.3-49.78-51.77Zm49.78,38.73c17.92,0,34.45-11.89,34.45-38.73s-16.53-38.92-34.45-38.92-34.65,12.08-34.65,38.92,16.53,38.73,34.65,38.73Z"></path>
+                                <path class="cls-1" d="M757.99,87.57c0-36.08,22.7-51.81,46.59-51.81,15.33,0,29.47,6.33,36.64,18.42V0h15.93V139.38h-15.93v-18.61c-7.17,12.09-21.3,18.61-36.64,18.61-23.89,0-46.59-15.93-46.59-51.81Zm49.58,38.76c17.52,0,34.45-12.28,34.45-38.76s-16.92-38.95-34.45-38.95-34.45,12.28-34.45,38.95,16.73,38.76,34.45,38.76Z"></path>
+                            </g>
+                            <g>
+                                <path class="cls-2" d="M115.52,35.87h20.11v17.73c6.17-11,19.32-17.75,34.65-17.75,23.1,0,46.2,15.63,46.2,52.1s-23.1,52.1-46.2,52.1c-15.33,0-28.47-6.75-34.65-17.75v54.93h-20.11V35.87Zm50.58,86.82c16.13,0,31.26-11.39,31.26-36.33s-15.13-36.33-31.26-36.33-31.46,11.39-31.46,36.33,15.53,36.33,31.46,36.33Z"></path>
+                                <path class="cls-2" d="M231.96,87.8c0-36.62,22.7-51.96,49.38-51.96s47.19,15.53,47.19,50.43c0,3.45-.2,5.37-.6,7.48h-76.66c1.59,20.9,12.54,30.49,31.06,30.49,12.74,0,22.5-4.41,26.88-16.11h17.92c-6.17,22.24-23.89,31.25-45,31.25-27.88,0-50.18-15.72-50.18-51.58Zm77.46-8.63c-.4-17.45-10.55-28.19-28.27-28.19-16.53,0-27.88,9.2-29.67,28.19h57.94Z"></path>
+                                <path class="cls-2" d="M391.81,52.45c-16.33,0-27.68,9.96-27.68,28.13v58.8h-20.11V35.84h20.11v22.27h.6c1.79-7.62,11.75-22.27,34.85-22.27,20.31,0,36.64,11.53,36.64,40.24v63.3h-20.11v-58.8c0-18.17-7.96-28.13-24.29-28.13Z"></path>
+                                <g>
+                                    <path class="cls-2" d="M49.98,75.7c6.35,0,11.91,5.36,11.91,11.91s-5.56,11.91-11.91,11.91-11.91-5.16-11.91-11.91,5.56-11.91,11.91-11.91Z"></path>
+                                    <g>
+                                        <path class="cls-2" d="M53.78,35.85v16.44c14.09,1.53,25.93,11.48,27.22,31.63h19.03c-1.55-31.42-22.91-46.56-46.25-48.06Z"></path>
+                                        <path class="cls-2" d="M46.17,35.84C22.93,37.28,1.48,52.42-.08,83.91H18.96c1.28-20.25,13.06-30.19,27.22-31.65v-16.42Z"></path>
+                                        <path class="cls-2" d="M46.17,122.96c-14.16-1.46-25.94-11.41-27.22-31.65H-.08c1.56,31.5,23.01,46.63,46.25,48.07v-16.42Z"></path>
+                                        <path class="cls-2" d="M81,91.3c-1.29,20.15-13.12,30.1-27.22,31.63v16.44c23.34-1.51,44.7-16.64,46.25-48.06h-19.03Z"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+
+                    </div>
+                    <h2>What is Junglegold?</h2>
+
+                    <p id="intro" translate>The first open-source blockchain chocolate bar that encourages socioeconomic
+                        and ecological sustainability! </p>
+                    <p class="subIntro" translate>
+                        How do we do it? Together with our award winner chocolate producer, Junglegold Bali, we designed
+                        a product that is not only empowering local communities in Bali but it is also deliciously
+                        eco-friendly! That is because Junglegold Bali locally sources all the components of this
+                        chocolate bar and it makes sure that the ingredients come from deforestation-free areas.
+                        Meanwhile, the incredibly beautiful design of these bars is inspired by Balinese culture and
+                        tradition and made by local artists.
+                    </p>
+
+                    <p data-ng-if='currency.testnet'><strong>This explorer is currently showing the test Junglegold
+                        network!</strong></p>
+
+<!--                    <div id="powered" class="row">-->
+<!--                        <div class="powered-text">-->
+<!--                            <small class="text-muted" translate>Powered by</small>-->
+<!--                        </div>-->
+<!--                        <a href="https://Junglegold.com" target="_blank" class="junglegold-platform"-->
+<!--                           title="Junglegold Platform"></a>-->
+<!--                    </div>-->
+                </div>
+            </div> <!-- END OF COL-3 -->
         </div>
-
-        <h2 translate>Latest Transactions</h2>
-
-        <table class="table table-hover table-striped" style="table-layout: fixed;">
-          <thead>
-            <tr>
-              <th>Hash</th>
-              <th class="text-right" translate>Value Out</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr data-ng-show="!txs.length">
-              <td colspan="3" translate>Waiting for transactions...</td>
-            </tr>
-            <tr class="fader" data-ng-repeat='tx in txs'>
-              <td>
-                <a class="ellipsis" href="tx/{{tx.txid}}">{{tx.txid}}</a>
-              </td>
-              <td class="text-right"><span class="ellipsis">{{$root.currency.getConvertion(tx.valueOut)}}</span></td>
-            </tr>
-          </tbody>
-        </table>
-
-      </div>
-
-      <div class="col-xs-12 col-md-4 col-gray">
-        <h2 translate>What is Junglegold?</h2>
-
-
-
-          <p id="intro" translate>The first open-source blockchain chocolate bar that encourages socioeconomic and ecological sustainability! </p>
-        <p class="subIntro" translate>
-         How do we do it? Together with our award winner chocolate producer, Junglegold Bali, we designed a product that is not only empowering local communities in Bali but it is also deliciously eco-friendly! That is because Junglegold Bali locally sources all the components of this chocolate bar and it makes sure that the ingredients come from deforestation-free areas. Meanwhile, the incredibly beautiful design of these bars is inspired by Balinese culture and tradition and made by local artists.
-        </p>
-
-        <p data-ng-if='currency.testnet'><strong>This explorer is currently showing the test Junglegold network!</strong></p>
-
-        <div id="powered" class="row">
-          <div class="powered-text">
-            <small class="text-muted" translate>Powered by</small>
-          </div>
-          <a href="https://Junglegold.com" target="_blank" class="junglegold-platform" title="Junglegold Platform"></a>
-        </div>
-      </div> <!-- END OF COL-3 -->
     </div>
-  </div>
 </section>
